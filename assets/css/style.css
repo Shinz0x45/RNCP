@@ -1,0 +1,24 @@
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.profil {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profil > div {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.profil h1 {
+    margin: 0;
+}
+.profil p {
+    margin: 10px 50 0 0;
+}
