@@ -4,94 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="application de gestion de Budget">
-    <title>Gestion de Budget</title>
-    <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <!-- Lien Bootstrap -->
+    <meta name="description" content="Créer un compte sur votre application de gestion de Budget">
+    <title>Inscription - Gestion de Budget</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="canonical" href="http://127.0.0.1:5500/index.html">
 </head>
 
 <body>
-
-    <header>
-
-        <nav class="navbar bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <div class="profil">
-                        <div>
-                            <h1 class="welcome">Bienvenu, </h1>
-                            <p>Sur nottre application</p>
-                        </div>
-                        <img src="../assets/img/pdp_anonyme.png" id="pdp" alt="Photo de profil" class="avatar" />
-                    </div>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                    aria-labelledby="offcanvasNavbarLabel">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="../pages/contact.html">Nous contacter</a>
-                            </li>
-                            
-                        </ul>
-
+    <main class="login-page">
+        <section class="login-container">
+            <h1>Créer un compte</h1>
+            <form class="login-form" id="register-form">
+                <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <div class="input-container">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="prenom">Prénom</label>
+                    <div class="input-container">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Adresse email</label>
+                    <div class="input-container">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="email" name="email" placeholder="Votre adresse email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <div class="input-container">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Votre mot de passe" required>
+                        <button type="button" class="show-password">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password"> Confirmer le mot de passe</label>
+                    <div class="input-container">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="confirm-password" name="confirm-password"
+                            placeholder="Confirmez votre mot de passe" required>
+                    </div>
+                </div>
+                <div class="login-options">
+                    <label>
+                        <input type="checkbox" required> J'accepte les conditions</label>
+                </div>
+                <button type="submit" class="login-button"> Créer mon compte
+                </button>
+            </form>
+            <div class="register-link">
+                <p> Vous avez déjà un compte ?
+                    <a href="connexion.html">Se connecter</a>
+                </p>
             </div>
-        </nav>
-
-
-
-    </header>
-    <main>
-        <form class="contact-form" id="inscriptionForm">
-        <h2>Inscription</h2>
-
-        <div class="form-group">
-            <label for="nom">Nom :</label>
-            <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
-        </div>
-
-        <div class="form-group">
-            <label for="prenom">Prénom :</label>
-            <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
-        </div>
-
-        <div class="form-group">
-            <label for="email" class="form-label">Email :</label>
-            <input type="email" id="email" name="email" placeholder="exemple@gmail.com" required>
-        </div>
-
-        <div class="form-group">
-            <label for="mdp" class="form-label">Mot de passe :</label>
-            <input type="password" id="mdp" name="mdp" placeholder="Votre mot de passe" required>
-        </div>
-
-        <div class="form-group">
-            <label for="confirm_mdp" class="form-label">Confirmation du mot de passe :</label>
-            <input type="password" id="confirm_mdp" name="confirm_mdp" placeholder="Confirmez votre mot de passe" required>
-        </div>
-
-        <button type="submit">Envoyer</button>
-
-        <p class="contact-note">Nous vous répondrons dans les 24 heures.</p>
-    </form>
+        </section>
     </main>
-    <footer>
-
-    </footer>
-    <!-- Lien JS Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/app.js"></script>
 </body>
 

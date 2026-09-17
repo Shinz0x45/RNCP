@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Connexion à votre application de gestion de Budget">
+    <title>Connexion - Gestion de Budget</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="canonical" href="http://127.0.0.1:5500/index.html">
+</head>
+
+<body>
+    <main class="login-page">
+        <section class="login-container">
+            <div class="login-logo">
+                <i class="fa-solid fa-wallet"></i>
+            </div>
+            <h1>Connexion</h1>
+            <form class="login-form" id="login-form">
+                <div class="form-group">
+                    <label for="email">Adresse email</label>
+                    <div class="input-container">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="email" name="email" placeholder="Votre adresse email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <div class="input-container">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Votre mot de passe" required>
+                        <button type="button" class="show-password"><i class="fa-solid fa-eye"></i></button>
+                    </div>
+                </div>
+                <div class="login-options">
+                    <label>
+                        <input type="checkbox"> Se souvenir de moi </label>
+                    <a href="mdpperdu.html">Mot de passe oublié ?</a>
+                </div>
+                <button type="submit" class="login-button">Se connecter</button>
+            </form>
+
+            <div class="register-link">
+                <p> Vous n'avez pas encore de compte ? <a href="inscription.html">Créer un compte</a></p>
+            </div>
+        </section>
+    </main>
+    <script src="../assets/js/app.js"></script>
+</body>
+
+</html>
