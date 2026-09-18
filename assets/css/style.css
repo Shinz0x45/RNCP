@@ -64,27 +64,6 @@
 }
 
 
-/* Logo */
-
-.login-logo {
-    width: 70px;
-    height: 70px;
-
-    margin: 0 auto 20px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 50%;
-
-    background-color: #533dea;
-
-    color: white;
-
-    font-size: 28px;
-}
-
 
 /* Titre */
 
@@ -251,7 +230,7 @@
 .register-link {
     margin-top: 25px;
 
-    color: #777;
+    color: #424242;
 
     font-size: 14px;
 }
