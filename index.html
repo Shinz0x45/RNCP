@@ -4,28 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="application de gestion de Budget">
-    <title>Acceuil - Gestion de Budget</title>
+    <meta name="description" content="Application de gestion de Budget">
+    <title>Accueil - Gestion de Budget</title>
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <!-- Lien Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-    <link rel="canonical" href="http://127.0.0.1:5500/index.html" >
 </head>
 
-<body>
+<body class="home-body">
 
+    <!-- ===================== HEADER ===================== -->
     <header>
-
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
                     <div class="profil">
                         <div>
                             <h1 class="welcome">Bienvenu, </h1>
-                            <p>Rémi !</p>
+                            <p></p>
                         </div>
-                        <img src="./assets/img/pdp_anonyme.png" id="pdp" alt="Photo de profil" class="avatar" />
+                        <img src="assets/img/pdp_anonyme.png" id="pdp" alt="Photo de profil" class="avatar" />
                     </div>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
@@ -36,27 +35,25 @@
                     aria-labelledby="offcanvasNavbarLabel">
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.html">Acceuil</a>
+                                <a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="pages/detailsCompte.html" role="button" data-bs-toggle="dropdown"
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     Compte
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="pages/cartes.html">Cartes</a></li>
-                                    <li><a class="dropdown-item" href="pages/ajoutTransaction.html">Transactions</a>
-                                    </li>
+                                    <li><a class="dropdown-item" href="pages/ajoutTransaction.html">Transactions</a></li>
                                     <li><a class="dropdown-item" href="pages/analyse.html">Analyse</a></li>
                                     <li><a class="dropdown-item" href="pages/historique.html">Historique</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="pages/detailsCompte.html">Profil</a></li>
                                 </ul>
                             </li>
@@ -64,27 +61,364 @@
                                 <a class="nav-link" href="pages/contact.html">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/pages/connexion.html">Deconnexion</a>
+                                <a class="nav-link" href="pages/connexion.html">Déconnexion</a>
                             </li>
                         </ul>
-
                     </div>
                 </div>
             </div>
         </nav>
-
-
-
     </header>
-    <main>
-        <h2>Acceuil</h2>
-    </main>
-    <footer>
 
-    </footer>
+    <!-- ===================== MAIN ===================== -->
+    <main class="home-main">
+
+        <!-- ---- HERO : SOLDE ---- -->
+        <section class="home-hero">
+            <div class="home-hero-inner">
+                <div class="home-balance-label">
+                    Votre solde
+                    <button class="home-eye-btn" id="eyeBtn" onclick="homeToggleBalance()"
+                        aria-label="Afficher/masquer le solde">
+                        <i class="fa-regular fa-eye" id="eyeIcon"></i>
+                    </button>
+                </div>
+                <div class="home-balance-amount">
+                    <span class="home-currency">€</span>
+                    <span id="balanceVal">3 466,90</span>
+                </div>
+                <div class="home-hero-row">
+                    <div class="home-balance-sub">Mis à jour à l'instant</div>
+                    <div class="home-reward-box">
+                        <div class="home-reward-label">Récompenses</div>
+                        <div class="home-reward-value">307</div>
+                        <div class="home-reward-unit">Points</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ---- ACTIONS RAPIDES ---- -->
+        <div class="container-fluid px-3">
+
+            <div class="home-actions-card">
+                <div class="row g-0 text-center">
+                    <div class="col-3">
+                        <div class="home-qa-item" onclick="homeOpenModal('transferModal')">
+                            <div class="home-qa-icon home-qa-primary">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </div>
+                            <span class="home-qa-label">Virement</span>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="home-qa-item" onclick="homeOpenModal('rechargeModal')">
+                            <div class="home-qa-icon home-qa-green">
+                                <i class="fa-solid fa-wallet"></i>
+                            </div>
+                            <span class="home-qa-label">Recharger</span>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="home-qa-item" onclick="homeOpenModal('cardModal')">
+                            <div class="home-qa-icon home-qa-orange">
+                                <i class="fa-solid fa-credit-card"></i>
+                            </div>
+                            <span class="home-qa-label">Carte</span>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <a class="home-qa-item" href="pages/historique.html" style="text-decoration:none;">
+                            <div class="home-qa-icon home-qa-purple">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                            </div>
+                            <span class="home-qa-label">Historique</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ---- BANNIÈRE PROMO ---- -->
+
+
+            <!-- ---- VOS SERVICES ---- -->
+            <div class="home-section mt-4">
+                <div class="home-section-header">
+                    <span class="home-section-title">Vos services</span>
+                    <a href="pages/ajoutTransaction.html" class="home-view-all">
+                        Voir tout <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </div>
+                <div class="home-card">
+                    <div class="row g-3 text-center">
+                        <div class="col-3">
+                            <div class="home-service-item">
+                                <div class="home-service-icon s-blue"><i class="fa-solid fa-mobile-screen"></i></div>
+                                <span class="home-service-label">Mobile</span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="home-service-item">
+                                <div class="home-service-icon s-green"><i class="fa-solid fa-wifi"></i></div>
+                                <span class="home-service-label">Internet</span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="home-service-item">
+                                <div class="home-service-icon s-orange"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                                <span class="home-service-label">Factures</span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="home-service-item">
+                                <div class="home-service-icon s-red"><i class="fa-solid fa-bolt"></i></div>
+                                <span class="home-service-label">Électricité</span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="home-service-item">
+                                <div class="home-service-icon s-purple"><i class="fa-solid fa-film"></i></div>
+                                <span class="home-service-label">Cinéma</span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="home-service-item">
+                                <div class="home-service-icon s-cyan"><i class="fa-solid fa-droplet"></i></div>
+                                <span class="home-service-label">Eau</span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="home-service-item">
+                                <div class="home-service-icon s-teal"><i class="fa-solid fa-tag"></i></div>
+                                <span class="home-service-label">Bons</span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="home-service-item">
+                                <div class="home-service-icon s-brown"><i class="fa-solid fa-store"></i></div>
+                                <span class="home-service-label">Marché</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ---- DERNIERS DESTINATAIRES ---- -->
+            <div class="home-section mt-4">
+                <div class="home-section-header">
+                    <span class="home-section-title">Derniers destinataires</span>
+                    <a href="#" class="home-view-all">Voir tout <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+                <div class="home-recipients-row">
+                    <div class="home-recipient">
+                        <div class="home-r-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c);">E</div>
+                        <span class="home-r-name">Esther</span>
+                    </div>
+                    <div class="home-recipient">
+                        <div class="home-r-avatar" style="background:linear-gradient(135deg,#4facfe,#00f2fe);">H</div>
+                        <span class="home-r-name">Hawkins</span>
+                    </div>
+                    <div class="home-recipient">
+                        <div class="home-r-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7);">J</div>
+                        <span class="home-r-name">Jenny</span>
+                    </div>
+                    <div class="home-recipient">
+                        <div class="home-r-avatar" style="background:linear-gradient(135deg,#fa709a,#fee140);">L</div>
+                        <span class="home-r-name">Leslie</span>
+                    </div>
+                    <div class="home-recipient">
+                        <div class="home-r-avatar" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb);">J</div>
+                        <span class="home-r-name">Jerome</span>
+                    </div>
+                    <div class="home-recipient">
+                        <div class="home-r-avatar" style="background:linear-gradient(135deg,#fccb90,#d57eeb);">A</div>
+                        <span class="home-r-name">Albert</span>
+                    </div>
+                    <div class="home-recipient">
+                        <div class="home-r-avatar" style="background:linear-gradient(135deg,#96fbc4,#f9f586);">C</div>
+                        <span class="home-r-name">Cameron</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ---- TRANSACTIONS RÉCENTES ---- -->
+            <div class="home-section mt-4 mb-5">
+                <div class="home-section-header">
+                    <span class="home-section-title">Transactions récentes</span>
+                    <a href="pages/historique.html" class="home-view-all">
+                        Voir tout <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </div>
+                <div class="home-card" id="home-tx-list">
+                    <!-- Rempli dynamiquement par app.js -->
+                    <p class="text-muted text-center py-3 mb-0" id="home-tx-empty">
+                        Aucune transaction enregistrée.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ===================== NAV BAS ===================== -->
+    <nav class="home-bottom-nav">
+        <a class="home-nav-item active" href="index.html">
+            <i class="fa-solid fa-house"></i>
+            <span>Accueil</span>
+        </a>
+        <a class="home-nav-item" href="pages/historique.html">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>Historique</span>
+        </a>
+        <a class="home-nav-item home-nav-qr-wrap" href="pages/ajoutTransaction.html">
+            <div class="home-nav-qr">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+        </a>
+        <a class="home-nav-item" href="pages/analyse.html">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Analyse</span>
+        </a>
+        <a class="home-nav-item" href="pages/detailsCompte.html">
+            <i class="fa-regular fa-user"></i>
+            <span>Profil</span>
+        </a>
+    </nav>
+
+    <!-- ===================== MODALS ===================== -->
+
+    <!-- Modal Virement -->
+    <div class="home-modal-overlay" id="transferModal">
+        <div class="home-modal-sheet">
+            <div class="home-modal-handle"></div>
+            <h5 class="home-modal-title">Choisir un mode de virement</h5>
+            <p class="home-modal-body">Sélectionnez comment vous souhaitez envoyer de l'argent.</p>
+            <div class="mt-3 d-flex flex-column gap-3">
+                <div class="home-modal-option" onclick="homeCloseModal('transferModal')">
+                    <div class="home-modal-option-icon" style="background:var(--primary-light);color:var(--primary);">
+                        <i class="fa-solid fa-user-group"></i>
+                    </div>
+                    <div>
+                        <div class="home-modal-option-title">Virement à un ami</div>
+                        <div class="home-modal-option-sub">Gratuit, juste un numéro de téléphone</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right ms-auto" style="color:#ccc;"></i>
+                </div>
+                <div class="home-modal-option" onclick="homeCloseModal('transferModal')">
+                    <div class="home-modal-option-icon" style="background:#e8f5e9;color:#2e7d32;">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+                    <div>
+                        <div class="home-modal-option-title">Virement bancaire</div>
+                        <div class="home-modal-option-sub">Transfert vers un compte ou une carte</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right ms-auto" style="color:#ccc;"></i>
+                </div>
+            </div>
+            <button class="home-btn home-btn-secondary w-100 mt-3" onclick="homeCloseModal('transferModal')">
+                Annuler
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Recharge -->
+    <div class="home-modal-overlay" id="rechargeModal">
+        <div class="home-modal-sheet">
+            <div class="home-modal-handle"></div>
+            <h5 class="home-modal-title">Recharger le solde</h5>
+            <p class="home-modal-body">Choisissez un montant à ajouter à votre solde.</p>
+            <div class="mt-3 d-flex flex-wrap gap-2">
+                <button class="home-btn home-btn-secondary" style="flex:1;min-width:80px;">+ 10 €</button>
+                <button class="home-btn home-btn-secondary" style="flex:1;min-width:80px;">+ 20 €</button>
+                <button class="home-btn home-btn-secondary" style="flex:1;min-width:80px;">+ 50 €</button>
+                <button class="home-btn home-btn-secondary" style="flex:1;min-width:80px;">+ 100 €</button>
+            </div>
+            <div class="form-group mt-3">
+                <label class="ajout-tx-label" for="recharge-montant">
+                    <i class="fa-solid fa-euro-sign me-2" style="color:var(--primary);"></i>Montant personnalisé
+                </label>
+                <div class="input-container">
+                    <i class="fa-solid fa-coins"></i>
+                    <input type="number" id="recharge-montant" placeholder="Saisir un montant…" min="1" step="1">
+                </div>
+            </div>
+            <button class="home-btn home-btn-primary w-100 mt-3" onclick="homeCloseModal('rechargeModal')">
+                <i class="fa-solid fa-plus me-2"></i>Recharger
+            </button>
+            <button class="home-btn home-btn-secondary w-100 mt-2" onclick="homeCloseModal('rechargeModal')">
+                Annuler
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Carte -->
+    <div class="home-modal-overlay" id="cardModal">
+        <div class="home-modal-sheet">
+            <div class="home-modal-handle"></div>
+            <h5 class="home-modal-title">Mes Cartes</h5>
+            <!-- Visuel carte -->
+            <div class="home-card-visual">
+                <div class="home-card-chip"></div>
+                <div class="home-card-number">**** &nbsp; **** &nbsp; **** &nbsp; 7576</div>
+                <div class="d-flex justify-content-between align-items-end">
+                    <div>
+                        <div style="font-size:9px;opacity:.6;text-transform:uppercase;">Titulaire</div>
+                        <div style="font-size:13px;font-weight:600;" id="home-card-holder-name">—</div>
+                    </div>
+                    <i class="fa-brands fa-cc-mastercard" style="font-size:28px;color:#eb001b;"></i>
+                </div>
+            </div>
+            <!-- Liste cartes -->
+            <div class="d-flex flex-column gap-2 mt-3">
+                <div class="home-card-list-item">
+                    <i class="fa-brands fa-cc-visa" style="font-size:26px;color:#1a1f71;"></i>
+                    <div class="flex-grow-1">
+                        <div style="font-size:13px;font-weight:600;">Visacard</div>
+                        <div style="font-size:12px;color:#999;">**** **** **** 3245</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right" style="color:#ccc;"></i>
+                </div>
+                <div class="home-card-list-item">
+                    <i class="fa-brands fa-cc-visa" style="font-size:26px;color:#1a1f71;"></i>
+                    <div class="flex-grow-1">
+                        <div style="font-size:13px;font-weight:600;">Visacard</div>
+                        <div style="font-size:12px;color:#999;">**** **** **** 7214</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right" style="color:#ccc;"></i>
+                </div>
+            </div>
+            <a href="pages/cartes.html"
+               class="home-btn home-btn-outline w-100 mt-3 d-block text-center text-decoration-none">
+                <i class="fa-solid fa-plus me-2"></i>Ajouter une carte
+            </a>
+            <button class="home-btn home-btn-secondary w-100 mt-2" onclick="homeCloseModal('cardModal')">
+                Fermer
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Confidentialité -->
+    <div class="home-modal-overlay home-modal-center" id="privacyModal">
+        <div class="home-modal-sheet home-modal-centered-sheet">
+            <div class="home-modal-handle"></div>
+            <div class="home-modal-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h5 class="home-modal-title text-center">Politique de confidentialité</h5>
+            <p class="home-modal-body text-center mt-2">
+                Notre application collecte et utilise vos données personnelles conformément à la réglementation
+                en vigueur (RGPD). Vos informations sont stockées localement et ne sont jamais partagées avec des tiers.
+            </p>
+            <button class="home-btn home-btn-primary w-100 mt-3" onclick="homeCloseModal('privacyModal')">
+                J'accepte
+            </button>
+        </div>
+    </div>
+
     <!-- Lien JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/app.js"></script>
+
 </body>
 
 </html>

@@ -4,26 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="application de gestion de Budget">
-    <title>Gestion de Budget</title>
-    <link rel="stylesheet" href="../assets/css/style.css" >
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" >
+    <meta name="description" content="Application de gestion de Budget">
+    <title>Ajouter une transaction - Gestion de Budget</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <!-- Lien Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-    <link rel="canonical" href="http://127.0.0.1:5500/index.html" >
 </head>
 
-<body>
+<body class="ajout-tx-body">
 
+    <!-- ===================== HEADER ===================== -->
     <header>
-
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
                     <div class="profil">
                         <div>
                             <h1 class="welcome">Bienvenu, </h1>
-                            <p>Rémi !</p>
+                            <p></p>
                         </div>
                         <img src="../assets/img/pdp_anonyme.png" id="pdp" alt="Photo de profil" class="avatar" />
                     </div>
@@ -41,50 +40,196 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="../index.html">Acceuil</a>
+                                <a class="nav-link" href="../index.html">Accueil</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="../pages/detailsCompte.html" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     Compte
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="../pages/cartes.html">Cartes</a></li>
-                                    <li><a class="dropdown-item" href="../pages/ajoutTransaction.html">Transactions</a>
+                                    <li><a class="dropdown-item" href="cartes.html">Cartes</a></li>
+                                    <li><a class="dropdown-item active" href="ajoutTransaction.html">Transactions</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="../pages/analyse.html">Analyse</a></li>
-                                    <li><a class="dropdown-item" href="../pages/historique.html">Historique</a></li>
+                                    <li><a class="dropdown-item" href="analyse.html">Analyse</a></li>
+                                    <li><a class="dropdown-item" href="historique.html">Historique</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="../pages/detailsCompte.html">Profil</a></li>
+                                    <li><a class="dropdown-item" href="detailsCompte.html">Profil</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../pages/contact.html">Contact</a>
+                                <a class="nav-link" href="contact.html">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../connexion.html">Deconnexion</a>
+                                <a class="nav-link" href="connexion.html">Déconnexion</a>
                             </li>
                         </ul>
-
                     </div>
                 </div>
             </div>
         </nav>
-
-
-
     </header>
-    <main>
-        <h1>Ajout de Transaction</h1>
-    </main>
-    <footer>
 
-    </footer>
+    <!-- ===================== MAIN ===================== -->
+    <main class="ajout-tx-main">
+
+        <!-- Message de succès -->
+        <div class="ajout-tx-success" id="ajout-tx-success">
+            <i class="fa-solid fa-circle-check me-2"></i>
+            Transaction enregistrée avec succès !
+        </div>
+
+        <!-- Message d'erreur -->
+        <div class="ajout-tx-error" id="ajout-tx-error"></div>
+
+        <!-- ---- FORMULAIRE ---- -->
+        <form id="ajout-tx-form" class="ajout-tx-form" novalidate>
+
+            <a href="../index.html" class="ajout-tx-back">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+
+            <h2 class="ajout-tx-page-title">Nouvelle transaction</h2>
+
+            <!-- Type : Dépense / Revenu -->
+            <div class="ajout-tx-type-row">
+                <button type="button" class="ajout-tx-type-btn active" id="btn-depense" onclick="setTxType('depense')">
+                    <i class="fa-solid fa-arrow-trend-down me-2"></i>Dépense
+                </button>
+                <button type="button" class="ajout-tx-type-btn" id="btn-revenu" onclick="setTxType('revenu')">
+                    <i class="fa-solid fa-arrow-trend-up me-2"></i>Revenu
+                </button>
+            </div>
+            <input type="hidden" id="tx-type" value="depense">
+
+            <!-- Montant -->
+            <div class="form-group">
+                <label class="ajout-tx-label" for="tx-montant">
+                    <i class="fa-solid fa-euro-sign me-2" style="color:var(--primary);"></i>Montant
+                </label>
+                <div class="input-container">
+                    <i class="fa-solid fa-coins"></i>
+                    <input type="number" id="tx-montant" name="montant" placeholder="0,00" step="0.01" min="0.01"
+                        required>
+                </div>
+            </div>
+
+            <!-- Libellé -->
+            <div class="form-group">
+                <label class="ajout-tx-label" for="tx-libelle">
+                    <i class="fa-solid fa-pen me-2" style="color:var(--primary);"></i>Libellé
+                </label>
+                <div class="input-container">
+                    <i class="fa-solid fa-align-left"></i>
+                    <input type="text" id="tx-libelle" name="libelle" placeholder="Ex : Courses, Loyer, Salaire…"
+                        required>
+                </div>
+            </div>
+
+            <!-- Catégorie -->
+            <div class="form-group">
+                <label class="ajout-tx-label" for="tx-categorie">
+                    <i class="fa-solid fa-tag me-2" style="color:var(--primary);"></i>Catégorie
+                </label>
+                <div class="input-container">
+                    <i class="fa-solid fa-list"></i>
+                    <select id="tx-categorie" name="categorie" required style="width:100%;height:50px;padding:0 45px;border:1px solid #ddd;border-radius:10px;
+                               outline:none;font-size:14px;background-color:#fafafa;appearance:none;cursor:pointer;">
+                        <option value="" disabled selected>Choisir une catégorie…</option>
+                        <optgroup label="Dépenses courantes">
+                            <option value="mobile">📱 Mobile</option>
+                            <option value="internet">🌐 Internet</option>
+                            <option value="facture">🧾 Facture</option>
+                            <option value="électricité">⚡ Électricité</option>
+                            <option value="eau">💧 Eau</option>
+                        </optgroup>
+                        <optgroup label="Loisirs">
+                            <option value="cinéma">🎬 Cinéma</option>
+                            <option value="restaurant">🍽️ Restaurant</option>
+                            <option value="shopping">🛍️ Shopping</option>
+                            <option value="voyage">✈️ Voyage</option>
+                        </optgroup>
+                        <optgroup label="Entrées d'argent">
+                            <option value="recharge">💳 Recharge</option>
+                            <option value="virement">💸 Virement reçu</option>
+                            <option value="salaire">💼 Salaire</option>
+                        </optgroup>
+                        <optgroup label="Autre">
+                            <option value="marché">🛒 Marché</option>
+                            <option value="autre">🔖 Autre</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Date -->
+            <div class="form-group">
+                <label class="ajout-tx-label" for="tx-date">
+                    <i class="fa-solid fa-calendar me-2" style="color:var(--primary);"></i>Date
+                </label>
+                <div class="input-container">
+                    <i class="fa-regular fa-calendar"></i>
+                    <input type="date" id="tx-date" name="date" required>
+                </div>
+            </div>
+
+            <!-- Note (optionnel) -->
+            <div class="form-group">
+                <label class="ajout-tx-label" for="tx-note">
+                    <i class="fa-solid fa-note-sticky me-2" style="color:var(--primary);"></i>Note
+                    <span style="font-size:11px;color:#aaa;font-weight:400;">(optionnel)</span>
+                </label>
+                <textarea id="tx-note" name="note" class="contact-textarea" placeholder="Informations complémentaires…"
+                    rows="2"></textarea>
+            </div>
+
+            <!-- Bouton valider -->
+            <button type="submit" class="login-button mt-2">
+                <i class="fa-solid fa-plus me-2"></i>Enregistrer la transaction
+            </button>
+
+            <!-- Lien retour -->
+            <div class="register-link mt-3">
+                <p><a href="../index.html">
+                        <i class="fa-solid fa-arrow-left me-1"></i>Retour à l'accueil
+                    </a></p>
+            </div>
+
+        </form>
+
+    </main>
+
+    <!-- ===================== NAV BAS ===================== -->
+    <nav class="home-bottom-nav">
+        <a class="home-nav-item" href="../index.html">
+            <i class="fa-solid fa-house"></i>
+            <span>Accueil</span>
+        </a>
+        <a class="home-nav-item" href="historique.html">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>Historique</span>
+        </a>
+        <a class="home-nav-item home-nav-qr-wrap active" href="ajoutTransaction.html">
+            <div class="home-nav-qr">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+        </a>
+        <a class="home-nav-item" href="analyse.html">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Analyse</span>
+        </a>
+        <a class="home-nav-item" href="detailsCompte.html">
+            <i class="fa-regular fa-user"></i>
+            <span>Profil</span>
+        </a>
+    </nav>
+
     <!-- Lien JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/app.js"></script>
+
 </body>
 
 </html>
